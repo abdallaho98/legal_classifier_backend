@@ -19,7 +19,7 @@ router.post('/login', function(req, res, next) {
   }).catch(err => {res.status(400).send({success : false });})
 });
 
-router.post('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
   User.find({}).then(data => {res.send({success : true , data});}).catch(err => {res.status(400).send({success : false });})
 });
 

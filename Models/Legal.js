@@ -15,9 +15,12 @@ const LegalSchema = new Schema({
         required: true
     },
 
-    Answer: Number,
+    answer: {
+        type:Number,
+        default : 0
+    },
 
-    Answrer : [{ type: Schema.Types.ObjectId, ref: 'user' }],
+    answrer : { type: Schema.Types.ObjectId, ref: 'user' },
 
 
 });
