@@ -11,7 +11,7 @@ const url = "mongodb://localhost:27017/legal_classifier"
 const port = process.env.PORT || 3000
 const http = require('http')
 
-Mongoose.connect(url).then(res => {console.warn('connected')}).catch(err => {console.warn(err)});
+Mongoose.connect(url, { useNewUrlParser: true , useUnifiedTopology: true}).then(res => {console.warn('connected')}).catch(err => {console.warn(err)});
 
 app.use(logger('dev'));
 app.use(express.json());
