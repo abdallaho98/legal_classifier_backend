@@ -9,9 +9,8 @@ const app = express();
 const Mongoose = require('mongoose')
 const url = "mongodb://localhost:27017/legal_classifier"
 const port = process.env.PORT || 3000
-const http = require('http')
 
-Mongoose.connect(url, { useNewUrlParser: true , useUnifiedTopology: true}).then(res => {console.warn('connected')}).catch(err => {console.warn(err)});
+Mongoose.connect(url, { useNewUrlParser: true , useUnifiedTopology: true }).then(res => {console.warn('connected')}).catch(err => {console.warn(err)});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -19,9 +18,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
+
+app.use(allowCrossDomain)
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/legal', legalRouter);
+
 
 app.listen(port, function () {
     console.log("Running RestHub on port " + port);
@@ -30,3 +39,4 @@ app.listen(port, function () {
 
 
 module.exports = app;
+
