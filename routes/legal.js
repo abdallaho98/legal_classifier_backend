@@ -39,4 +39,10 @@ router.post('/add', function(req, res, next) {
     Legal.create(req.body).then(data => {   res.send({success : true  , data});}).catch(err => {res.status(400).send({success : false  , err});})
 });
 
+
+router.post('/addall', function(req, res, next) {
+    console.warn("process create" , req.body)
+    Legal.insertMany(req.body.csv).then(data => {   res.send({success : true  , data});}).catch(err => {res.status(400).send({success : false  , err});})
+});
+
 module.exports = router;
