@@ -6,7 +6,11 @@ const User = require('../Models/User')
 /* GET home page. */
 router.get('/', function(req, res, next) {
     console.warn("Herre" , req.query)
-    Legal.find({}).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+    if(req.query.tag == null){
+        Legal.find({}).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+    } else {
+        Legal.find({"content": {"$regex": req.query.tag , "$options": "i" } }).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+    }
 });
 
 
