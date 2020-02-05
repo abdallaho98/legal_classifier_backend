@@ -45,4 +45,15 @@ router.post('/addall', function(req, res, next) {
     Legal.insertMany(req.body.csv).then(data => {   res.send({success : true  , data});}).catch(err => {res.status(400).send({success : false  , err});})
 });
 
+
+/* GET home page. */
+router.get('/export', function(req, res, next) {
+    console.warn("Herre" , req.query)
+    if(req.query.tag == null){
+        Legal.find({ answer : { $gte : 1} } , {  "_id" : 0 , "answrer" : 0 , "type" : 0 , "__v" : 0 , "number" : 0}).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+    } else {
+        Legal.find({"content": {"$regex": req.query.tag , "$options": "i" } }).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+    }
+});
+
 module.exports = router;
