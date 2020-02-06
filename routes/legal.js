@@ -56,4 +56,12 @@ router.get('/export', function(req, res, next) {
     }
 });
 
+
+router.post('/predict', function(req, res, next) {
+    console.warn("process create" , req.body)
+    const rand = Math.floor((Math.random() * 5) + 1);
+    res.status(200).send({success : true , predict : rand})
+});
+
+
 module.exports = router;
