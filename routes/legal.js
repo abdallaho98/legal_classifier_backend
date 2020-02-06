@@ -21,7 +21,7 @@ router.post('/answer', function(req, res, next) {
         user => {
             console.warn(user.email)
             if(user != null)
-                Legal.findOneAndUpdate({_id: req.body.id}, {$set: { answer : req.body.answer, answrer: user }}, (err) => {
+                Legal.findOneAndUpdate({_id: req.body.id}, {$set: { answer : req.body.answer, answrer: user , tag : req.body.tag}}, (err) => {
                     if (err) {
                         res.status(400).send({success : false })
                     }

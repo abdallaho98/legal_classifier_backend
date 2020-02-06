@@ -20,6 +20,11 @@ const LegalSchema = new Schema({
         default : 0
     },
 
+    tag: {
+        type:Number,
+        default : 0
+    },
+
     answrer : { type: Schema.Types.ObjectId, ref: 'user' },
 
 
