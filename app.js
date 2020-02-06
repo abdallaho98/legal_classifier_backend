@@ -5,6 +5,7 @@ const logger = require('morgan')
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const legalRouter = require('./routes/legal')
+const predictRouter = require('./routes/prediction')
 const app = express();
 const Mongoose = require('mongoose')
 const url = "mongodb://localhost:27017/legal_classifier"
@@ -30,6 +31,7 @@ app.use(allowCrossDomain)
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/legal', legalRouter);
+app.use('/predict', predictRouter);
 
 
 app.listen(port, function () {
