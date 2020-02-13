@@ -8,7 +8,7 @@ const legalRouter = require('./routes/legal')
 const predictRouter = require('./routes/prediction')
 const app = express();
 const Mongoose = require('mongoose')
-const url = "mongodb://localhost:27017/legal_classifier"
+const url = process.env.MONGO_URI || "mongodb://localhost:27017/legal_classifier"
 const port = process.env.PORT || 3000
 
 Mongoose.connect(url, { useNewUrlParser: true , useUnifiedTopology: true }).then(res => {console.warn('connected')}).catch(err => {console.warn(err)});
