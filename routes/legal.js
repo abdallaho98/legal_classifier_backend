@@ -7,13 +7,13 @@ const User = require('../Models/User')
 router.get('/', function(req, res, next) {
     console.warn("Herre" , req.query)
     if(req.query.tag == null && req.query.type == null){
-        Legal.find({}).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+        Legal.find({}).populate('answrer').sort('number').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
     } else if(req.query.tag != null && req.query.type == null) {
-        Legal.find({"content": {"$regex": req.query.tag , "$options": "i" } }).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+        Legal.find({"content": {"$regex": req.query.tag , "$options": "i" } }).populate('answrer').sort('number').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
     } else if(req.query.tag == null && req.query.type != null ){
-        Legal.find({ type: req.query.type }).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+        Legal.find({ type: req.query.type }).populate('answrer').sort('number').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
     }  else{
-        Legal.find({"content": {"$regex": req.query.tag , "$options": "i" } , type : req.query.type }).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+        Legal.find({"content": {"$regex": req.query.tag , "$options": "i" } , type : req.query.type }).populate('answrer').sort('number').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
     }
 });
 
@@ -56,7 +56,7 @@ router.get('/export', function(req, res, next) {
     if(req.query.tag == null){
         Legal.find({ answer : { $gte : 1} } , {  "_id" : 0  , "__v" : 0 , "number" : 0 , "answrer" : 0}).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
     } else {
-        Legal.find({"content": {"$regex": req.query.tag , "$options": "i" } }).populate('answrer').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
+        Legal.find({"content": {"$regex": req.query.tag , "$options": "i" } }).populate('answrer').sort('number').then(legals => {res.status(200).send({success : true , legals});}).catch(err => {res.status(400).send({success : false });})
     }
 });
 
