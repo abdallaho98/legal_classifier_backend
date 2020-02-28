@@ -20,6 +20,11 @@ const LegalSchema = new Schema({
         default : 0
     },
 
+    signaler: {
+        type:Number,
+        default : 0
+    },
+
     tag: {
         type:Number,
         default : 0
