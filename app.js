@@ -27,7 +27,7 @@ var allowCrossDomain = function(req, res, next) {
 }
 
 app.use(allowCrossDomain)
-
+console.log("Start");
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/legal', legalRouter);
