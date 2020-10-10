@@ -101,7 +101,7 @@ router.get('/type', function(req, res, next) {
 });
 
 router.get('/class', function(req, res, next) {
-    let stats = [ 0,0,0,0,0,0]
+    let stats = [0,0,0,0,0,0]
     Legal.find({ answer : { $gte : 1} } ).then(data => {
         data.forEach((element, idx) => {
             let emal = element;
