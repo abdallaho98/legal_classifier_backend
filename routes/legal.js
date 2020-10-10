@@ -90,7 +90,7 @@ router.post('/predict', function(req, res, next) {
 });
 
 router.get('/type', function(req, res, next) {
-    let stats = [ 0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    let stats = [ 0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0]
     Legal.find({ answer : { $gte : 1} } ).then(data => {
         data.forEach((element, idx, array) => {
                 let emal = element;
