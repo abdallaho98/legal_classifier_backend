@@ -72,7 +72,7 @@ router.get('/export', function(req, res, next) {
 
 
 router.post('/predict', function(req, res, next) {
-    console.warn("process create" , req.body.content)
+    console.warn("process predict" , req.body.content)
     const contentText = req.body.content
     let rand = Math.floor((Math.random() * 5) + 1);
     if(contentText.includes("يجب ") || contentText.includes("يلزم ") ){
