@@ -77,7 +77,7 @@ router.post('/predict', function(req, res, next) {
     let rand = Math.floor((Math.random() * 5) + 1);
     if(contentText.includes("يجب ") || contentText.includes("يلزم ") ){
         rand = 3
-    } else if (contentText.includes("يمنع ") || contentText.includes("لا يجوز ") || contentText.includes("لا يمكن ") || contentText.includes("يعافب ") ||){
+    } else if (contentText.includes("يمنع ") || contentText.includes("لا يجوز ") || contentText.includes("لا يمكن ") || contentText.includes("يعافب ") ){
         rand = 4
     } else if (contentText.includes("يحق ")){
         rand = 1
