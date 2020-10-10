@@ -72,8 +72,20 @@ router.get('/export', function(req, res, next) {
 
 
 router.post('/predict', function(req, res, next) {
-    console.warn("process create" , req.body)
-    const rand = Math.floor((Math.random() * 5) + 1);
+    console.warn("process create" , req.body.content)
+    const contentText = req.body.content
+    let rand = Math.floor((Math.random() * 5) + 1);
+    if(contentText.includes("يجب ") || contentText.includes("يلزم ") ){
+        rand = 3
+    } else if (contentText.includes("يمنع ") || contentText.includes("لا يجوز ") || contentText.includes("لا يمكن ") || contentText.includes("يعافب ") ||){
+        rand = 4
+    } else if (contentText.includes("يحق ")){
+        rand = 1
+    } else if (contentText.includes("يجوز ") || contentText.includes("يمكن ")){
+        rand = 2
+    } else {
+        rand = 5
+    }
     res.status(200).send({success : true , predict : rand})
 });
 
